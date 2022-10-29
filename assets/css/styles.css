@@ -14,4 +14,21 @@ section{
     width: max-content;
     background: deepskyblue;
     top: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+section > div{
+    display: flex;
+    margin: 20px;
+    align-items: center;
+    flex-direction: column;
+}
+
+input{
+    -webkit-appearance: none;
+    border: none;
+    width: 32px;
+    height: 32px;
 }
