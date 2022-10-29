@@ -11,20 +11,26 @@ $("#canvas").on("mousedown", function (e) {
     drawing = true;
     downX = e.pageX;
     downY = e.pageY;
-    draw(e);
+    if (!square){
+        draw(e);
+    }
 });
 
 $("#canvas").on("mouseup", function (e) {
-    // drawing = false;
-    // line.beginPath();
-    line.rect(downX, downY, e.pageX-downX, e.pageY-downY);
-    line.stroke();
+    if (square) {
+        line.rect(downX, downY, e.pageX-downX, e.pageY-downY);
+        line.stroke();
+        line.beginPath();
+        line.rect(downX, downY, e.pageX-downX, e.pageY-downY);
+    }
+    drawing = false;
     line.beginPath();
-    line.rect(downX, downY, e.pageX-downX, e.pageY-downY);
 });
 
 $("#canvas").on("mousemove", function (e) {
-    draw(e);
+    if (!square){
+        draw(e);
+    }
 });
 
 function draw(e) {
