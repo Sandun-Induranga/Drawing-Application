@@ -9,14 +9,17 @@ canvas{
 }
 
 section{
+    display: flex;
     position: absolute;
     height: 100px;
     width: max-content;
-    background: deepskyblue;
-    top: 0;
+    background: white;
+    top: 5px;
     left: 0;
     right: 0;
+    border-radius: 20px;
     margin: auto;
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.2);
 }
 
 section > div{
@@ -29,6 +32,11 @@ section > div{
 input{
     -webkit-appearance: none;
     border: none;
+    width: 32px;
+    height: 32px;
+}
+
+#square{
     width: 32px;
     height: 32px;
 }
