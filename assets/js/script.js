@@ -1,4 +1,3 @@
-
 $(window).on('load', function () {
     let drawing = false;
     const canvas = document.querySelector("canvas");
@@ -13,15 +12,18 @@ $(window).on('load', function () {
 
     $(this).on("mouseup", function () {
         drawing = false;
+        line.beginPath();
     });
 
     $(this).on("mousemove", function (e) {
         if (!drawing) return;
-            line.lineWidth = 10;
-            line.lineCap = "round";
+        line.lineWidth = 10;
+        line.lineCap = "round";
 
-            line.lineTo(e.pageX, e.pageY);
-            line.stroke();
-            console.log("done");
+        line.lineTo(e.pageX, e.pageY);
+        line.stroke();
+        line.beginPath();
+        line.lineTo(e.pageX, e.pageY);
+        console.log("done");
     });
 });
