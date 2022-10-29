@@ -32,8 +32,8 @@ section > div{
     gap: 5px;
 }
 
-input{
-    -webkit-appearance: none;
+input,select{
+    /*-webkit-appearance: none;*/
     border: none;
     width: 32px;
     height: 32px;
@@ -41,4 +41,8 @@ input{
 
 i{
     font-size: 22px;
+}
+
+select{
+    width: 40px;
 }
