@@ -3,11 +3,13 @@ const canvas = document.querySelector("canvas");
 const line = canvas.getContext("2d");
 canvas.height = $("body").height();
 canvas.width = $("body").width();
+
 let downX = 0;
 let downY = 0;
 let square = false;
 let circle = false;
 let erase = false;
+let pen = false;
 
 $("#canvas").on("mousedown", function (e) {
     drawing = true;
@@ -38,7 +40,6 @@ $("#canvas").on("mousemove", function (e) {
 
 function draw(e) {
     if (!drawing) return;
-    // line.lineWidth = $("#size").val();
     line.lineCap = "round";
     line.strokeStyle = $("#color").val();
 
@@ -55,8 +56,10 @@ $("#square").on("click", function () {
         square = true;
         circle = false;
         erase = false;
+        pen = false;
         defaultShapeStyle("#circle");
         defaultShapeStyle("#eraser");
+        defaultShapeStyle("#pen");
     } else {
         square = false;
         defaultShapeStyle("#square");
@@ -70,11 +73,30 @@ $("#circle").on("click", function () {
         circle = true;
         square = false;
         erase = false;
+        pen = false;
         defaultShapeStyle("#square");
         defaultShapeStyle("#eraser");
+        defaultShapeStyle("#pen");
     } else {
         circle = false;
         defaultShapeStyle("#circle");
+    }
+});
+
+$("#pen").on("click", function () {
+    if (!pen) {
+        $(this).parent().css("background", "#00b4d8");
+        $(this).parent().children(":eq(0)").css("background", "#00b4d8");
+        pen = true;
+        square = false;
+        erase = false;
+        circle = false;
+        defaultShapeStyle("#square");
+        defaultShapeStyle("#eraser");
+        defaultShapeStyle("#circle");
+    } else {
+        pen = false;
+        defaultShapeStyle("#pen");
     }
 });
 
@@ -88,23 +110,32 @@ $("#color").on("click", function () {
 });
 
 $("#eraser").on("click", function () {
-    line.strokeStyle = "white";
     if (!erase) {
         $(this).parent().css("background", "#00b4d8");
         $(this).parent().children(":eq(0)").css("background", "#00b4d8");
-        line.strokeStyle = "white";
+        line.strokeStyle = "#ffffff";
         $("#color").attr("value", "#ffffff");
         erase = true;
+        pen = false;
         circle = false;
         square = false;
         defaultShapeStyle("#square");
         defaultShapeStyle("#circle");
+        defaultShapeStyle("#pen");
     } else {
         erase = false;
-        defaultShapeStyle("#eraser");
+        defaultShapeStyle("#erase");
     }
 });
 
 $("#size").on("change", function () {
     line.lineWidth = $("#size").val();
-})
+});
+
+$("#btn-download").on("click", function () {
+    var image = canvas.toDataURL("image/png", 1.0).replace("image/png", "image/octet-stream");
+    var link = document.createElement('a');
+    link.download = "my-image.png";
+    link.href = image;
+    link.click();
+});

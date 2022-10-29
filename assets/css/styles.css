@@ -46,3 +46,11 @@ i{
 select{
     width: 44px;
 }
+
+button{
+    background: deepskyblue;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    height: 20px;
+}
