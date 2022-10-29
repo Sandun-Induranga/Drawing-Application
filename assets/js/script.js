@@ -7,6 +7,7 @@ let downX = 0;
 let downY = 0;
 let square = false;
 let circle = false;
+let erase = false;
 
 $("#canvas").on("mousedown", function (e) {
     drawing = true;
@@ -37,7 +38,7 @@ $("#canvas").on("mousemove", function (e) {
 
 function draw(e) {
     if (!drawing) return;
-    line.lineWidth = 10;
+    // line.lineWidth = $("#size").val();
     line.lineCap = "round";
     line.strokeStyle = $("#color").val();
 
@@ -53,7 +54,9 @@ $("#square").on("click", function () {
         $(this).parent().children(":eq(0)").css("background", "#00b4d8");
         square = true;
         circle = false;
+        erase = false;
         defaultShapeStyle("#circle");
+        defaultShapeStyle("#eraser");
     } else {
         square = false;
         defaultShapeStyle("#square");
@@ -66,7 +69,9 @@ $("#circle").on("click", function () {
         $(this).parent().children(":eq(0)").css("background", "#00b4d8");
         circle = true;
         square = false;
+        erase = false;
         defaultShapeStyle("#square");
+        defaultShapeStyle("#eraser");
     } else {
         circle = false;
         defaultShapeStyle("#circle");
@@ -81,3 +86,25 @@ function defaultShapeStyle(shape) {
 $("#color").on("click", function () {
     line.strokeStyle = $("#color").val();
 });
+
+$("#eraser").on("click", function () {
+    line.strokeStyle = "white";
+    if (!erase) {
+        $(this).parent().css("background", "#00b4d8");
+        $(this).parent().children(":eq(0)").css("background", "#00b4d8");
+        line.strokeStyle = "white";
+        $("#color").attr("value", "#ffffff");
+        erase = true;
+        circle = false;
+        square = false;
+        defaultShapeStyle("#square");
+        defaultShapeStyle("#circle");
+    } else {
+        erase = false;
+        defaultShapeStyle("#eraser");
+    }
+});
+
+$("#size").on("change", function () {
+    line.lineWidth = $("#size").val();
+})
