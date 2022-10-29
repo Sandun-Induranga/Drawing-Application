@@ -1,13 +1,27 @@
-let painting = false;
 
-$("canvas").on("mousedown", function () {
-    alert("done");
-});
+$(window).on('load', function () {
+    let drawing = false;
+    const canvas = document.querySelector("canvas");
+    const line = canvas.getContext("2d");
+    canvas.height = $("body").height();
+    canvas.width = $("body").width();
+    console.log(canvas.height);
 
-$("canvas").on("mouseup", function () {
-    alert("done");
-});
+    $(this).on("mousedown", function () {
+        drawing = true;
+    });
 
-$("canvas").on("mousemove", function () {
-    alert("done");
+    $(this).on("mouseup", function () {
+        drawing = false;
+    });
+
+    $(this).on("mousemove", function (e) {
+        if (!drawing) return;
+            line.lineWidth = 10;
+            line.lineCap = "round";
+
+            line.lineTo(e.pageX, e.pageY);
+            line.stroke();
+            console.log("done");
+    });
 });
