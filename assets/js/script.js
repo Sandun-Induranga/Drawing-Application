@@ -6,8 +6,9 @@ $(window).on('load', function () {
     canvas.width = $("body").width();
     console.log(canvas.height);
 
-    $(this).on("mousedown", function () {
+    $(this).on("mousedown", function (e) {
         drawing = true;
+        draw(e);
     });
 
     $(this).on("mouseup", function () {
@@ -16,6 +17,10 @@ $(window).on('load', function () {
     });
 
     $(this).on("mousemove", function (e) {
+        draw(e);
+    });
+
+    function draw(e) {
         if (!drawing) return;
         line.lineWidth = 10;
         line.lineCap = "round";
@@ -24,6 +29,5 @@ $(window).on('load', function () {
         line.stroke();
         line.beginPath();
         line.lineTo(e.pageX, e.pageY);
-        console.log("done");
-    });
+    }
 });

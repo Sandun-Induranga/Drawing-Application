@@ -1,8 +1,17 @@
 body{
+    position: relative;
     overflow: hidden;
 }
 canvas{
     border: 2px solid deepskyblue;
     width: 99.5vw;
     height: 99.5vh;
+}
+
+section{
+    position: absolute;
+    height: 100px;
+    width: max-content;
+    background: deepskyblue;
+    top: 0;
 }
