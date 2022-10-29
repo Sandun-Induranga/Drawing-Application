@@ -27,6 +27,9 @@ section > div{
     margin: 20px;
     align-items: center;
     flex-direction: column;
+    padding: 5px;
+    border-radius: 10px;
+    gap: 5px;
 }
 
 input{
@@ -36,7 +39,12 @@ input{
     height: 32px;
 }
 
-#square{
-    width: 32px;
-    height: 32px;
+#square, #circle{
+    width: 25px;
+    height: 25px;
+    border: 2px solid black;
+}
+
+#circle{
+    border-radius: 100%;
 }

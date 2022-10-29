@@ -47,8 +47,8 @@ function draw(e) {
 
 $("#square").on("click", function () {
     if (!square){
-        $(this).parent().css("background","#123456");
-        $(this).parent().children(":eq(0)").css("background","#123456");
+        $(this).parent().css("background","#00b4d8");
+        $(this).parent().children(":eq(0)").css("background","#00b4d8");
         square = true;
     }else {
         square = false;
