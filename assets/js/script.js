@@ -8,7 +8,7 @@ let downX = 0;
 let downY = 0;
 let square = false;
 let circle = false;
-let erase = false;
+let eraser = false;
 let pen = false;
 
 $("#canvas").on("mousedown", function (e) {
@@ -55,11 +55,10 @@ $("#square").on("click", function () {
         $(this).parent().children(":eq(0)").css("background", "#00b4d8");
         square = true;
         circle = false;
-        erase = false;
+        eraser = false;
         pen = false;
-        defaultShapeStyle("#circle");
-        defaultShapeStyle("#eraser");
-        defaultShapeStyle("#pen");
+        defaultShapeStyle("#circle, #eraser, #pen");
+        $("#color").val("#000000");
     } else {
         square = false;
         defaultShapeStyle("#square");
@@ -72,11 +71,10 @@ $("#circle").on("click", function () {
         $(this).parent().children(":eq(0)").css("background", "#00b4d8");
         circle = true;
         square = false;
-        erase = false;
+        eraser = false;
         pen = false;
-        defaultShapeStyle("#square");
-        defaultShapeStyle("#eraser");
-        defaultShapeStyle("#pen");
+        defaultShapeStyle("#square, #eraser, #pen");
+        $("#color").val("#000000");
     } else {
         circle = false;
         defaultShapeStyle("#circle");
@@ -89,14 +87,30 @@ $("#pen").on("click", function () {
         $(this).parent().children(":eq(0)").css("background", "#00b4d8");
         pen = true;
         square = false;
-        erase = false;
+        eraser = false;
         circle = false;
-        defaultShapeStyle("#square");
-        defaultShapeStyle("#eraser");
-        defaultShapeStyle("#circle");
+        defaultShapeStyle("#square, #eraser, #circle");
+        $("#color").val("#000000");
     } else {
         pen = false;
         defaultShapeStyle("#pen");
+    }
+});
+
+$("#eraser").on("click", function () {
+    if (!eraser) {
+        $(this).parent().css("background", "#00b4d8");
+        $(this).parent().children(":eq(0)").css("background", "#00b4d8");
+        $("#color").val("#ffffff");
+        eraser = true;
+        pen = false;
+        circle = false;
+        square = false;
+        defaultShapeStyle("#square, #circle, #pen");
+    } else {
+        eraser = false;
+        defaultShapeStyle("#eraser");
+        $("#color").val("#000000");
     }
 });
 
@@ -107,25 +121,6 @@ function defaultShapeStyle(shape) {
 
 $("#color").on("click", function () {
     line.strokeStyle = $("#color").val();
-});
-
-$("#eraser").on("click", function () {
-    if (!erase) {
-        $(this).parent().css("background", "#00b4d8");
-        $(this).parent().children(":eq(0)").css("background", "#00b4d8");
-        line.strokeStyle = "#ffffff";
-        $("#color").attr("value", "#ffffff");
-        erase = true;
-        pen = false;
-        circle = false;
-        square = false;
-        defaultShapeStyle("#square");
-        defaultShapeStyle("#circle");
-        defaultShapeStyle("#pen");
-    } else {
-        erase = false;
-        defaultShapeStyle("#erase");
-    }
 });
 
 $("#size").on("change", function () {
