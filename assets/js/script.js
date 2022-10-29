@@ -6,29 +6,31 @@ canvas.width = $("body").width();
 let downX = 0;
 let downY = 0;
 let square = false;
+let circle = false;
 
 $("#canvas").on("mousedown", function (e) {
     drawing = true;
     downX = e.pageX;
     downY = e.pageY;
-    if (!square){
+    line.strokeStyle = $("#color").val();
+    if (!square && !circle) {
         draw(e);
     }
 });
 
 $("#canvas").on("mouseup", function (e) {
     if (square) {
-        line.rect(downX, downY, e.pageX-downX, e.pageY-downY);
-        line.stroke();
-        line.beginPath();
-        line.rect(downX, downY, e.pageX-downX, e.pageY-downY);
+        line.rect(downX, downY, e.pageX - downX, e.pageY - downY);
+    } else if (circle) {
+        line.arc(downX, downY, e.pageY - downY, 0, 2 * Math.PI);
     }
+    line.stroke();
     drawing = false;
     line.beginPath();
 });
 
 $("#canvas").on("mousemove", function (e) {
-    if (!square){
+    if (!square && !circle) {
         draw(e);
     }
 });
@@ -46,13 +48,36 @@ function draw(e) {
 }
 
 $("#square").on("click", function () {
-    if (!square){
-        $(this).parent().css("background","#00b4d8");
-        $(this).parent().children(":eq(0)").css("background","#00b4d8");
+    if (!square) {
+        $(this).parent().css("background", "#00b4d8");
+        $(this).parent().children(":eq(0)").css("background", "#00b4d8");
         square = true;
-    }else {
+        circle = false;
+        defaultShapeStyle("#circle");
+    } else {
         square = false;
-        $(this).parent().css("background","white");
-        $(this).parent().children(":eq(0)").css("background", "white");
+        defaultShapeStyle("#square");
     }
-})
+});
+
+$("#circle").on("click", function () {
+    if (!circle) {
+        $(this).parent().css("background", "#00b4d8");
+        $(this).parent().children(":eq(0)").css("background", "#00b4d8");
+        circle = true;
+        square = false;
+        defaultShapeStyle("#square");
+    } else {
+        circle = false;
+        defaultShapeStyle("#circle");
+    }
+});
+
+function defaultShapeStyle(shape) {
+    $(shape).parent().css("background", "white");
+    $(shape).parent().children(":eq(0)").css("background", "white");
+}
+
+$("#color").on("click", function () {
+    line.strokeStyle = $("#color").val();
+});

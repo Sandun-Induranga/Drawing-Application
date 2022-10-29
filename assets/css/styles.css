@@ -39,12 +39,6 @@ input{
     height: 32px;
 }
 
-#square, #circle{
-    width: 25px;
-    height: 25px;
-    border: 2px solid black;
-}
-
-#circle{
-    border-radius: 100%;
+i{
+    font-size: 22px;
 }
