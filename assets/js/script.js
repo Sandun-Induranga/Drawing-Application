@@ -141,8 +141,8 @@ $("#btn-download").on("click", function () {
 
 canvas.addEventListener("touchstart", function (e) {
     drawing = true;
-    downX = e.pageX;
-    downY = e.pageY;
+    downX = e.changedTouches[e.changedTouches.length-1].pageX;
+    downY = e.changedTouches[e.changedTouches.length-1].pageY;
     line.strokeStyle = $("#color").val();
     if (!square && !circle) {
         draw(e);
@@ -151,7 +151,7 @@ canvas.addEventListener("touchstart", function (e) {
 
 canvas.addEventListener("touched", function (e) {
     if (square) {
-        line.rect(downX, downY, e.pageX - downX, e.pageY - downY);
+        line.rect(downX, downY, e.changedTouches[e.changedTouches.length-1].pageX - e.changedTouches[e.changedTouches.length-1].pageY, e.e.changedTouches[e.changedTouches.length-1].pageY - downY);
     } else if (circle) {
         line.arc(downX, downY, e.pageY - downY, 0, 2 * Math.PI);
     }

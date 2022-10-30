@@ -68,14 +68,14 @@ button{
     }
 
     section>div{
-        margin: 5px;
-    }
-
-    canvas{
-        width: 150vw;
+        margin: 0px;
     }
 
     body{
         overflow: scroll;
+    }
+
+    button{
+        display: none;
     }
 }
