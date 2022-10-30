@@ -127,7 +127,7 @@ $("#size").on("change", function () {
     line.lineWidth = $("#size").val();
 });
 
-$("#btn-download").on("click", function () {
+$("button").on("click", function () {
     var image = canvas.toDataURL("image/png", 1.0).replace("image/png", "image/octet-stream");
     var link = document.createElement('a');
     link.download = "my-image.png";
