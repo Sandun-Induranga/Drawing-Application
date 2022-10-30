@@ -149,12 +149,13 @@ canvas.addEventListener("touchstart", function (e) {
     }
 });
 
-canvas.addEventListener("touched", function (e) {
+canvas.addEventListener("touchend", function (e) {
     if (square) {
-        line.rect(downX, downY, e.changedTouches[e.changedTouches.length-1].pageX - e.changedTouches[e.changedTouches.length-1].pageY, e.e.changedTouches[e.changedTouches.length-1].pageY - downY);
+        line.rect(downX, downY, e.changedTouches[e.changedTouches.length-1].pageX - downX, e.changedTouches[e.changedTouches.length-1].pageY - downY);
     } else if (circle) {
-        line.arc(downX, downY, e.pageY - downY, 0, 2 * Math.PI);
+        line.arc(downX, downY, e.changedTouches[e.changedTouches.length-1].pageY - downY, 0, 2 * Math.PI);
     }
+    console.log("come")
     line.stroke();
     drawing = false;
     line.beginPath();
