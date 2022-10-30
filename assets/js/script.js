@@ -134,3 +134,45 @@ $("#btn-download").on("click", function () {
     link.href = image;
     link.click();
 });
+
+
+
+// Mobile Device Events
+
+canvas.addEventListener("touchstart", function (e) {
+    drawing = true;
+    downX = e.pageX;
+    downY = e.pageY;
+    line.strokeStyle = $("#color").val();
+    if (!square && !circle) {
+        draw(e);
+    }
+});
+
+canvas.addEventListener("touched", function (e) {
+    if (square) {
+        line.rect(downX, downY, e.pageX - downX, e.pageY - downY);
+    } else if (circle) {
+        line.arc(downX, downY, e.pageY - downY, 0, 2 * Math.PI);
+    }
+    line.stroke();
+    drawing = false;
+    line.beginPath();
+});
+
+canvas.addEventListener("touchmove", function (e) {
+    if (!square && !circle) {
+        drawFromTouch(e);
+    }
+});
+
+function drawFromTouch(e) {
+    if (!drawing) return;
+    line.lineCap = "round";
+    line.strokeStyle = $("#color").val();
+
+    line.lineTo(e.changedTouches[e.changedTouches.length-1].pageX, e.changedTouches[e.changedTouches.length-1].pageY);
+    line.stroke();
+    line.beginPath();
+    line.lineTo(e.changedTouches[e.changedTouches.length-1].pageX, e.changedTouches[e.changedTouches.length-1].pageY);
+}
