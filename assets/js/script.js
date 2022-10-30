@@ -155,7 +155,7 @@ canvas.addEventListener("touchend", function (e) {
     } else if (circle) {
         line.arc(downX, downY, e.changedTouches[e.changedTouches.length-1].pageY - downY, 0, 2 * Math.PI);
     }
-    console.log("come")
+
     line.stroke();
     drawing = false;
     line.beginPath();
