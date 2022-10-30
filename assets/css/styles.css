@@ -70,4 +70,12 @@ button{
     section>div{
         margin: 5px;
     }
+
+    canvas{
+        width: 150vw;
+    }
+
+    body{
+        overflow: scroll;
+    }
 }
