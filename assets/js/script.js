@@ -1,8 +1,8 @@
 let drawing = false;
 const canvas = document.querySelector("canvas");
 const line = canvas.getContext("2d");
-canvas.height = $("body").height();
-canvas.width = $("body").width();
+canvas.width = $(window).width();
+canvas.height = $(window).height();
 
 let downX = 0;
 let downY = 0;

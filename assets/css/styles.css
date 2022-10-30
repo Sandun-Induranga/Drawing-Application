@@ -54,3 +54,20 @@ button{
     border-radius: 10px;
     height: 20px;
 }
+
+@media all and (min-width: 320px ) and (max-width: 700px){
+    *{
+        font-size: 10px;
+    }
+    i{
+        font-size: 10px;
+    }
+    #color{
+        width: 20px;
+        height: 20px;
+    }
+
+    section>div{
+        margin: 5px;
+    }
+}
